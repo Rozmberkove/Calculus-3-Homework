@@ -1,0 +1,307 @@
+\documentclass[letter,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIII A.D. }
+\addtolength{\headwidth}{3cm}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pst-plot}
+\usepgfplotslibrary{polar}
+
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+%\usepackage{draftwatermark}	
+%\SetWatermarkColor[gray]{0.9}
+%\SetWatermarkText{Private}
+%\SetWatermarkScale{3}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includegraphics[width=2.3cm]{logo.png}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet \#10 (17.1, 14.4, 17.2)} \\ \midrule
+		\textbf{Name:}   & D. Aiden M. Rosenberg & \textbf{Professor:} & Dr. Alan v. Herrmann Ph.D \\
+		\textbf{Course:} & Calculus III          & \textbf{Date:}      & October 26th, 2023 A.D.   \\ \bottomrule
+	\end{tabular} }
+\vspace{1cm}
+\section*{Section 17.1}
+
+\begin{figure}[h]
+    \begin{subfigure}{}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = -2, xmax = 2,
+                ymin = -2, ymax = 2,
+                axis equal image,
+                xtick distance = 1,
+                ytick distance = 1,
+                view = {0}{90},
+                title = {\bf Vector Field $\vec{F}(x,y) = \langle y, 1\rangle$},
+                height=5.25cm, % Adjust the height
+                xlabel = {$x$},
+                ylabel = {$y$},
+                colormap/viridis,
+                colorbar,
+                colorbar style = {
+                    ylabel = {Vector Length}
+                }
+            ]
+                \addplot3[
+                    point meta = {sqrt(y^2+1)},
+                    quiver = {
+                        u = {y},
+                        v = {1},
+                        scale arrows = 0.25,
+                    },
+                    quiver/colored = {mapped color},
+                    -stealth,
+                    domain = -2:2,
+                    domain y = -2:2,
+                ] {0};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}%
+    \begin{subfigure}{}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = -2, xmax = 2,
+                ymin = -2, ymax = 2,
+                axis equal image,
+                xtick distance = 1,
+                ytick distance = 1,
+                view = {0}{90},
+                title = {\bf Vector Field $\vec{F}(x,y) = \langle y, x\rangle$},
+                height=5.25cm, % Adjust the height
+                xlabel = {$x$},
+                ylabel = {$y$},
+                colormap/viridis,
+                colorbar,
+                colorbar style = {
+                    ylabel = {Vector Length}
+                }
+            ]
+                \addplot3[
+                    point meta = {sqrt(y^2+x^2)},
+                    quiver = {
+                        u = {y},
+                        v = {x},
+                        scale arrows = 0.25,
+                    },
+                    quiver/colored = {mapped color},
+                    -stealth,
+                    domain = -2:2,
+                    domain y = -2:2,
+                ] {0};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+
+    \begin{subfigure}{}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = -2, xmax = 2,
+                ymin = -2, ymax = 2,
+                axis equal image,
+                xtick distance = 1,
+                ytick distance = 1,
+                view = {0}{90},
+                title = {\bf Vector Field $\vec{F}(x,y) = \langle -y, x\rangle$},
+                height=5.25cm, % Adjust the height
+                xlabel = {$x$},
+                ylabel = {$y$},
+                colormap/viridis,
+                colorbar,
+                colorbar style = {
+                    ylabel = {Vector Length}
+                }
+            ]
+                \addplot3[
+                    point meta = {sqrt(y^2+x^2)},
+                    quiver = {
+                        u = {-y},
+                        v = {x},
+                        scale arrows = 0.25,
+                    },
+                    quiver/colored = {mapped color},
+                    -stealth,
+                    domain = -2:2,
+                    domain y = -2:2,
+                ] {0};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}%
+    \begin{subfigure}{}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin = -2, xmax = 2,
+                ymin = -2, ymax = 2,
+                axis equal image,
+                xtick distance = 1,
+                ytick distance = 1,
+                view = {0}{90},
+                title = {\bf Vector Field $\vec{F}(x,y) = \langle \frac{1}{2}-x, \frac{1}{2}+x\rangle$},
+                height=5.25cm, % Adjust the height
+                xlabel = {$x$},
+                ylabel = {$y$},
+                colormap/viridis,
+                colorbar,
+                colorbar style = {
+                    ylabel = {Vector Length}
+                }
+            ]
+                \addplot3[
+                    point meta = {sqrt((0.5-x)^2+(0.5+x)^2)},
+                    quiver = {
+                        u = {0.5-x},
+                        v = {0.5+x},
+                        scale arrows = 0.25,
+                    },
+                    quiver/colored = {mapped color},
+                    -stealth,
+                    domain = -2:2,
+                    domain y = -2:2,
+                ] {0};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+\end{figure}
+
+\section*{Section 14.4}
+A particle travels along curve $C$ be described by vector function $\vec{r}(t) =\langle 2t, 2t, 4-t \rangle$. Find the distance the particle travels from $(2, 2, 3)$ to $(4, 4, 2)$.
+\begin{enumerate}[label=\roman*.]
+    \item $1\leq t \leq 2$
+    \item $\pvec{r}'(t)=\langle 2, 2, -1 \rangle$
+    \item $||\pvec{r}'(t)|| = \sqrt{2^2+2^2+(-1)^2} = 3$
+\end{enumerate}
+
+\begin{align*}
+    s&= \int_{1}^{2} ||\pvec{r}'(t)|| \, dt \\
+    &= \int_{1}^{2} 3 \, dt\\
+    &= 3t\biggr\rvert_{1}^{2}\\
+    & = (6)-(3)\\
+    &= \boxed{3}
+\end{align*}
+
+\section*{Sections 10.1, 17.2}
+Find parametric equations to describe the following curves.
+\begin{enumerate}[label=\roman*.]
+    \item A line segment from $P(1, -2, 0)$ to $Q(-3, 0, 2)$
+    \[\boxed{\vec{r}(t)=\langle-4t+1,2t-2,2t\rangle ~\text{for}~ 0 \leq t \leq 1}\]
+    \item The part of $x = 2y^2-1$ from $(-1, 0)$ to $(7, 2)$
+    \[\boxed{\vec{r}(t)=\langle2t^{2}-1,t\rangle ~\text{for}~ 0 \leq t \leq 2}\]
+\end{enumerate}
+\section*{Section 17.2}
+Find the total charge on a wire in the shape of curve $C : x^2 + y^2 = 4$ in the first quadrant from $(2, 0)$ to $(0, 2)$ if the charge density of the wire is given by $\gamma(x, y) = y^2$. Recall that total charge on a wire is given by $Q =\int_{C}\gamma(x, y) \,dx$
+\begin{enumerate}[label=\roman*.]
+    \item $C: \vec{r}(t)=\langle 2\cos t, 2\sin t\rangle ~\text{for}~ 0 \leq t \leq \frac{\pi}{2}$
+    \item $\pvec{r}'(t) = \langle-2\sin t,2\cos t \rangle$
+    \item $||\pvec{r}'(t)|| = \sqrt{\left(-2\sin t\right)^{2}+\left(2\cos t\right)^{2}} = \sqrt{4\left(\sin^{2}t+\cos^{2}t\right)} = 2$
+\end{enumerate}
+\begin{align*}
+    Q &= \int_{0}^{\frac{\pi}{2}}\left(2\sin t\right)^{2} \cdot||\pvec{r}'(t)|| \,dt\\
+    &= 8\int_{0}^{\frac{\pi}{2}}\sin^2 t \, dt\\
+    &= 8\int_{0}^{\frac{\pi}{2}} \frac{1-\cos(2t)}{2} \, dt\\
+    &= 4\int_{0}^{\frac{\pi}{2}} \left(1-\cos(2t)\right) \,dt\\
+    & = 4\left[t - \frac{1}{2}\sin(2t)\right]_{0}^{\frac{\pi}{2}}\\
+    &= \boxed{2\pi}
+\end{align*}
+\section*{Section 17.2} 
+Find the work done by vector field $\vec{F}(x, y, z) = \langle x^3, x^2, yz \rangle$ in moving a particle along curve $C : x = 2\cos t, y = 2 \sin t, z = 4t$ from $0 \leq t \leq \pi$.
+\begin{enumerate}[label = \roman*.]
+    \item $\vec{F}(t)=\langle 8\cos^3 t,4\cos^{2}t,8t\sin\left(t\right)\rangle$
+    \item $\pvec{r}(t)=\langle 2\cos t, 2 \sin t, 4t \rangle$
+    \item $\pvec{r}'(t)=\langle -2\sin t, 2 \cos t, 4 \rangle$
+    \item Let $u=\cos t\Longrightarrow du = -\sin t \, dt$
+    \item Let $w=\sin(t) \Longrightarrow dw = \cos(t)\, dw$
+\end{enumerate}
+    \begin{align*}
+        \int_{C}  \vec{F}  \cdot d\vec{r}  &= \\
+        &= \int_{0}^{\pi}  \left(\langle  8\cos^3 t,4\cos^{2}t,8t\sin\left(t\right)\rangle  \cdot  \langle  -2\sin t, 2  \cos t, 4  \rangle  \right)  \, dt\\
+        &= \int_{0}^{\pi}  \left(-16\cos^{3}\left(t\right)\sin\left(t\right)+8\cos^{3}\left(t\right)+32t\sin\left(t\right)\right)  \, dt\\
+        &=\int_{0}^{\pi}-16\cos^{3}\left(t\right)\sin\left(t\right) \, dt + \int_{0}^{\pi}8\cos^{3}\left(t\right) \, dt + \int_{0}^{\pi} 32t\sin\left(t\right)  \, dt\\
+        &= \int_{1}^{-1}u^3 \, du + \int_{0}^{0}(1-w^2)\, dw + 32\left[-t\cos t- \int -\cos t \, dt\right]_{0}^{\pi}\\
+        &= 0+0+32\left[-t\cos t+\int \cos t \, dt\right]_{0}^{\pi}\\
+        &=32\left[-t\cos t+\int \cos t \, dt\right]_{0}^{\pi}\\
+        &=32\left[-t\cos t+\sin t\right]_{0}^{\pi}\\
+        &= \boxed{32\pi}
+        \end{align*}
+\end{document}
