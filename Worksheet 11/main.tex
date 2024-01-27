@@ -1,0 +1,263 @@
+\documentclass[letter,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{mathtools}
+%\usepackage{cfr-lm}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIII A.D. }
+\addtolength{\headwidth}{3cm}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pst-plot}
+\usepgfplotslibrary{polar}
+
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+%\usepackage{draftwatermark}	
+%\SetWatermarkColor[gray]{0.9}
+%\SetWatermarkText{Private}
+%\SetWatermarkScale{3}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet \#11 (17.2-17.5)} \\ \midrule
+		\textbf{Name:}   & D. Aiden M. Rosenberg & \textbf{Professor:} & Dr. Alan v. Herrmann Ph.D \\
+		\textbf{Course:} & Calculus III          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular} }
+\vspace{1cm}
+\section*{Section 17.2}
+Integrate $f(x,y) = 2x$ over curve $C$ given that $C$ is the part of $y = 2x^2$ from $(2, 8)$ to $(0, 0)$.
+\begin{enumerate}
+    \item $r(t)=\langle 2(1-t), 8(1-t)^2\rangle$ for $0\leq t \leq 1$
+    \item $\pvec{r}'(t)=\langle -2, 16(t-1)\rangle$
+    \item $|\pvec{r}'(t)| = \sqrt{\left(-2\right)^{2}+\left(16\left(t-1\right)\right)^{2}} = \sqrt{256t^{2}-512t+260}$
+    \item Let $u=256t^{2}-512t+260 \Longrightarrow du = 512(t-1) \, dt$
+\end{enumerate}
+\begin{align*}
+\int_{C} f(x,y) \, ds \\
+    &= \int_{0}^{1} f\left(\vec{r}(t)\right) \left|\pvec{r}'(t)\right| \, dt\\
+    &= 4\int_{0}^{1}\left(1-t\right)\sqrt{256t^{2}-512t+260}\,dt \\
+    &= -4\int_{0}^{1}\left(t-1\right)\sqrt{256t^{2}-512t+260}\,dt \\
+    &= \frac{4}{512}\int_{4}^{260}\sqrt{u}\,du\\
+    &= \frac{4}{512} \left[\frac{2}{3}u^{3/2}\right]_{4}^{260}\\
+    &= \boxed{\frac{4160\sqrt{65}-64}{1536}}
+\end{align*}
+
+\section*{Section 17.2 cont.} 
+Evaluate $\int_{C} y\, dx - x\, dy +3y \, dz$ if curve $C$ is the part of $\vec{r} (t) =\langle 2 \cos t, 2 \sin t, 3t \rangle$ from point $(2, 0, 0)$ to point $(-2, 0, 3\pi)$.
+\begin{enumerate}[label=\alph*.)]
+    \item $\pvec{r}'(t)=\langle -2\sin(t),2\cos(t), 3 \rangle$
+\end{enumerate}
+\begin{align*}
+\int_C y\, dx - x\, dy + 3y\, dz &= \int_0^\pi (-4\sin^2 t - 4\cos^2 t + 18\sin t)\,dt \\
+&= \int_0^\pi (18\sin t - 4)\,dt \\
+&= -18\cos t \bigg|_0^\pi - 4\pi \\
+&= \boxed{36 - 4\pi}
+\end{align*}
+\section*{Sections 17.2, 17.3}
+Find the work done by $\vec{F}= (x, y) = \langle -2y,-2x \rangle$ in moving a particle along a line segment from $(0, 4)$ to $(2, -4)$ by:
+\begin{enumerate}[label = \roman*.]
+    \item Using the parametrization of the curve to evaluate the work integral.
+    \begin{enumerate}[label=\alph*.)]
+        \item $\vec{r}(t)=\langle 2t, 4-8t\rangle$ for $0 \leq t\leq 1$
+        \item $\pvec{r}'(t)=\langle 2,-8\rangle$
+    \end{enumerate}
+    \begin{align*}
+        \int_{C}\vec{F}\cdot d\vec{r} &=\\
+        &= \int_{0}^{1} \langle -2(2-8t),-4t \rangle\cdot \langle 2,-8\rangle \, dt\\
+        &= \int_{0}^{1} 64t-16 \, dt\\
+        &= \left[\frac{32t^{2}}{2}-16t\right]_{0}^{1}\\
+        &= \boxed{16}
+    \end{align*}
+
+    \item Showing that the vector field is conservative, finding the potential function $f$ so that $\nabla f = \vec{F}$, and using $f$ to calculate the work done by $\vec{F}$.
+    \begin{align*}
+    \mathrm{curl}~\vec{F} &= \\
+    &= \nabla \times \mathbf{F} \\
+    &= \begin{vmatrix} \boldsymbol{\hat\imath} & \boldsymbol{\hat\jmath} & \boldsymbol{\hat k} \\{\dfrac{\partial}{\partial x}} & {\dfrac{\partial}{\partial y}} & {\dfrac{\partial}{\partial z}} \\F_x & F_y & F_z \end{vmatrix} \\
+    &= \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right) \boldsymbol{\hat\imath} + \left(\frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \boldsymbol{\hat\jmath} + \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \boldsymbol{\hat k}\\
+    &= (0-0)\boldsymbol{\hat\imath} + (0-0)\boldsymbol{\hat\jmath} + (-2-(-2))\boldsymbol{\hat\jmath}\\
+    &=\langle 0,0,0\rangle \\
+    &= \vec{0}
+\end{align*}
+    \begin{enumerate}
+        \item $f_x= -2y \Longrightarrow \int -2y \, dx = -2yx$
+        \item $f_y= -2x \Longrightarrow \int -2x \, dy = -2yx$
+        \item $f(x,y)=-2xy$
+    \end{enumerate}
+    \begin{align*}
+        \int_{C}\vec{F}\cdot d\vec{r} &=\\
+        &= f\left(\vec{r}(1)\right)-f\left(\vec{r}(0)\right)\\
+        &= f\left(2,4\right)-f\left(0,4\right)\\
+        &= 16-0\\
+        &= \boxed{16}
+    \end{align*}
+\end{enumerate}
+\section*{Section 17.3}
+Given the vector field $\vec{F}(x, y, z)=\left(2 x \cos z-x^2\right) \hat{\mathbf{i}}+(z-2 y) \hat{\mathbf{j}}+\left(y-x^2 \sin z\right) \hat{\mathbf{k}}$:
+\begin{enumerate}[label = \roman*.]
+    \item Show that $\vec{F}$ is conservative.
+    \begin{align*}
+    \mathrm{curl}~\vec{F} &= \\
+    &= \nabla \times \mathbf{F} \\
+    &= \begin{vmatrix} \boldsymbol{\hat\imath} & \boldsymbol{\hat\jmath} & \boldsymbol{\hat k} \\{\dfrac{\partial}{\partial x}} & {\dfrac{\partial}{\partial y}} & {\dfrac{\partial}{\partial z}} \\F_x & F_y & F_z \end{vmatrix} \\
+    &= \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right) \boldsymbol{\hat\imath} + \left(\frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \boldsymbol{\hat\jmath} + \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \boldsymbol{\hat k}\\
+    &= (1-1)\boldsymbol{\hat\imath} + \left(2x\sin z-2x\sin z\right)\boldsymbol{\hat\jmath} + \left(0-0\right)\boldsymbol{\hat\jmath}\\
+    &=\langle 0,0,0\rangle \\
+    &= \vec{0}
+\end{align*}
+    \item Find the potential function $f(x,y,z)$
+    \begin{enumerate}
+        \item $f_x=2 x \cos z-x^2\Longrightarrow \int \left(2 x \cos z-x^2 \right) \, dx = x^2\cos z-\frac{x^3}{3}$
+        \item $f_y=z-2 y \Longrightarrow \int \left(z-2 y \right) \, dy = yz-y^2$
+        \item $f_z=y-x^2 \sin z \Longrightarrow \int \left(y-x^2 \sin z \right) \, dz = yz+x^2\cos z$
+        \item $\f(x,y,z)=x^2\cos z + yz-y^2-\frac{x^3}{3}$
+    \end{enumerate}
+    \item Find the work done by $\vec{F}$ in moving a particle along a path from $(1, -1, 0)$ to $(2, 0, \pi)$
+    \begin{align*}
+        \int_{C}\vec{F}\cdot d\vec{r} &=\\
+        &= f\left(1,-1,0\right)-f\left(2,0,\pi\right)\\
+        &= \frac{-20}{3}+\frac{1}{3}\\
+        &= \boxed{-\frac{19}{3}}
+    \end{align*}
+\end{enumerate}
+\section*{Section 17.4}
+Evaluate $\oint_{C} 2y^2\, dx -x \,dy$ where $C$ is the circle $x^2 + y^2 = 4$ traced out once counterclockwise, using:
+\begin{enumerate}[label = \roman*.]
+    \item Line Integrals
+    \begin{enumerate}
+        \item $\vec{r}(t)=\langle 2\cos t, 2 \sin t\rangle$ for $0 \leq t\leq 2\pi$
+        \item $\pvec{r}'(t)=\langle -2 \sin t,2 \cos t\rangle$
+        \item Let $u=\cos t \Longrightarrow du = -\sin t \, dt$
+    \end{enumerate}
+    
+    \begin{align*}
+        \oint_{C} 2y^2\, dx -x \,dy &=\\
+        &= \int_{0}^{2\pi}\left(2\left(2\sin\left(t\right)\right)^{2}\left(-2\sin\left(t\right)\right)-\left(2\cos t\right)\left(2\cos\left(t\right)\right)\right) \, dt\\
+        &= \int_{0}^{2\pi}\left(-18\left(\sin\left(t\right)\right)^{3}-4\cos^{2}\left(t\right)\right)\, dt\\
+        &= -18\int_{0}^{2\pi}\left(\sin\left(t\right)\right)^{3}\,dt-4\int_{0}^{2\pi}\cos^{2}\left(t\right)\,t\\
+        &= -18\int_{0}^{2\pi}\sin\left(t\right)\left(1-\cos^{2}\left(t\right)\right)\,dt\ - 2\int_{0}^{2\pi}\left(1+\cos\left(2t\right)\right)\,dt\\
+        &= 18\int_{1}^{1}\left(1-u^{2}\right)du-\ 2\int_{0}^{2\pi}\left(1+\cos\left(2t\right)\right)\,dt\\
+        &= -2\left[t+\frac{1}{2}\sin\left(2t\right)\right]_{0}^{2\pi}\\
+        &= -\left[2t+\sin\left(2t\right)\right]_{0}^{2\pi}\\
+        &= \boxed{-4\pi}
+    \end{align*}
+    
+    \item Green’s Theorem
+    $$\oint_C (L\, dx + M\, dy) = \iint_{D} \left(\frac{\partial M}{\partial x} - \frac{\partial L}{\partial y}\right) dx\, dy$$
+    \begin{enumerate}
+        \item Let $L=2y^2 \Longrightarrow \frac{\partial L}{\partial y} = 4y$
+        \item Let $M=-x \Longrightarrow \frac{\partial M}{\partial x} = -1$
+    \end{enumerate}
+    \begin{align*}
+        \oint_{C} 2y^2\, dx -x \,dy &=\\
+        &= \int_{0}^{2\pi}\int_{0}^{2}\left(-1-4r\sin\left(\theta\right)\right)\, r\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2}\left(-r-4r^{2}\sin\left(\theta\right)\right)\,dr\,d\theta\\
+        &= \int_{0}^{2\pi}\left[-\frac{r^{2}}{2}-\frac{4r^{3}}{3}\sin\left(\theta\right)\right] \, d\theta\\
+        &= \int_{0}^{2\pi}\left(-2-\frac{32}{3}\sin\theta\right)\,d\theta\\
+        &=\left[-2\theta+\frac{32}{3}\cos\theta\right]_{0}^{2\pi}\\
+        &= \left(-4\pi+\frac{32}{3}\right)-\left(0+\frac{32}{3}\right)\\
+        &= \boxed{-4\pi}
+    \end{align*}
+    
+\end{enumerate}
+\newpage
+\section*{Section 17.4 cont.}
+Find the work done by $\vec{F}(x, y)=\left(x-y^2\right) \hat{\mathbf{i}}+\left(x^2+e^{y^2}\right) \hat{\mathbf{j}}$ in moving a particle once around the boundary of the region enclosed by $y=\frac{1}{4}x$ and $y=\frac{1}{2}\sqrt{x}$ traced out once counterclockwise.
+$$\oint_C (L\, dx + M\, dy) = \iint_{D} \left(\frac{\partial M}{\partial x} - \frac{\partial L}{\partial y}\right) dx\, dy$$
+    \begin{enumerate}
+        \item Let $L=\left(x-y^2\right) \Longrightarrow \frac{\partial L}{\partial y} = -2y$
+        \item Let $M=\left(x^2+e^{y^2}\right) \Longrightarrow \frac{\partial M}{\partial x} = 2x$
+    \end{enumerate}
+    \begin{align*}
+    W &=\\
+    &= \int_{0}^{1}\int_{4y^{2}}^{4y}\left(2x+2y\right) \, dx\, dy\\
+    &= \int_{0}^{1}\left[x^2+2yx\right]_{4y^{2}}^{4y}\, dy\\
+    &= \int_{0}^{1}\left(\left(16y^{2}+8y^{2}\right)-\left(16y^{4}+8y^{3}\right)\ \right)\,dy\\
+    &= \int_{0}^{1}\left(16y^{2}+8y^{2}-16y^{4}-8y^{3}\right)\,dy\\
+    &= \left[\frac{16}{3}y^{3}+\frac{8}{3}y^{3}-\frac{16}{5}y^{5}-2y^{4}\right]_{0}^{1}\\
+    &= \frac{24}{3}-\frac{16}{5}-\frac{10}{5} \\
+    &= \frac{42}{15}\\
+    &= \boxed{\frac{14}{5}}
+     \end{align*}
+
+\end{document}
