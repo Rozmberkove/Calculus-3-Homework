@@ -1,0 +1,242 @@
+\documentclass[letter,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{mathtools}
+%\usepackage{cfr-lm}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIII A.D. }
+\addtolength{\headwidth}{3cm}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pst-plot}
+\usepgfplotslibrary{polar}
+
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+%\usepackage{draftwatermark}	
+%\SetWatermarkColor[gray]{0.9}
+%\SetWatermarkText{Private}
+%\SetWatermarkScale{3}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet \#13 (17.7, 17.8)} \\ \midrule
+		\textbf{Name:}   & D. Aiden M. Rosenberg & \textbf{Professor:} & Dr. Alan v. Herrmann Ph.D \\
+		\textbf{Course:} & Calculus III          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular} }
+\vspace{1cm}
+\section*{Section 17.7}
+Use Stokes' Theorem to find the work done by $\vec{F}=\langle-y z, x z, z^{2}\rangle$ in moving a particle once around the boundary of $2 x+3 y+z=6$ in the first octant counterclockwise when viewed from above.
+ \begin{align*}
+    \mathrm{curl}~\vec{F} &= \nabla \times \mathbf{F}\\
+    &= \begin{vmatrix} \boldsymbol{\hat\imath} & \boldsymbol{\hat\jmath} & \boldsymbol{\hat k} \\{\dfrac{\partial}{\partial x}} & {\dfrac{\partial}{\partial y}} & {\dfrac{\partial}{\partial z}} \\F_x & F_y & F_z \end{vmatrix} \\
+    &= \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right) \boldsymbol{\hat\imath} + \left(\frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \right) \boldsymbol{\hat\jmath} + \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y} \right) \boldsymbol{\hat k}\\
+    &= (0-x)\boldsymbol{\hat\imath} + (-y-0)\boldsymbol{\hat\jmath} + (z-(-z))\boldsymbol{\hat\jmath}\\
+    &=\langle -x,-y,2z\rangle \\
+\end{align*}
+Let $\vec{r}\left(x,y\right)=\langle x,y,6-2x-3y\rangle$ for $0\leq x \leq 3$ and $0\leq y \leq 2-\frac{2}{3}x$
+
+\begin{align*}
+    \iint_{S}\left(\nabla \times \vec{F}\right)\, \cdot\, \mathrm{d}\vec{S}&=\\
+    &= \int_{0}^{3} \int_{0}^{2-\frac{2}{3}x} \langle -x, -y, 12-6y-4x \rangle \cdot \left(\vec{r}_{x}\times \vec{r}_{y}\right) \, dy\, dx\\
+    &= \int_{0}^{3} \int_{0}^{2-\frac{2}{3}x} \langle -x, -y, 12-6y-4x \rangle \cdot \langle 2,3,1\rangle \, dy\, dx\\
+    &= \int_{0}^{3} \int_{0}^{2-\frac{2}{3}x} \left(12-6x-9y\right) \, dy\, dx\\
+    &= \int_{0}^{3}\left(12\left(2-\frac{2}{3}x\right)-6x\left(2-\frac{2}{3}x\right)-9\frac{\left(2-\frac{2}{3}x\right)^{2}}{2}\right)\, dx\\
+    &= \int_{0}^{3}\left(24-\frac{24}{3}x-12x+\frac{12}{3}x^{2}-18+12x-2x^{2}\right)\,dx\\
+    &= \int_{0}^{3}\left(6-\frac{24}{3}x+\frac{12}{3}x^{2}-2x^{2}\right)\,dx\\
+    &= \int_{0}^{3}\left(6-8x+2x^{2}\right)\,dx\\
+    &= \left[6x-4x^{2}+\frac{2x^{3}}{3}\right]_{0}^3\\
+    &= 6\cdot3-4\cdot9+\frac{2}{3}\left(27\right) = \boxed{0}
+\end{align*}
+
+\section*{Section 17.8} 
+Find the outward flux of $\vec{F}=\left\langle x, \frac{1}{2} y^{2}, z\right\rangle$ through $x^{2}+y^{2}+z^{2}=4$.
+\begin{align*}
+    \mathrm{div}~\mathbf{F} &= \nabla\cdot\mathbf{F} = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right) \cdot (F_x,F_y,F_z) = \frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}\\
+    &= 2+y
+\end{align*}
+
+\begin{align*}
+    \iiint_{E}  \mathrm{div}~\mathbf{F} \, dV &=\\
+    &= \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{2}\left(2+\rho\sin\left(\phi\right)\sin\left(\theta\right)\right)\rho^{2}\sin\left(\phi\right)\,d\rho \,d\phi\, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{2}\left(2\rho^{2}\sin\left(\phi\right)+\rho^{2}\sin^{2}\left(\phi\right)\sin\left(\theta\right)\right)\,d\rho \,d\phi\, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{\pi}\left(\frac{16}{3}\sin\left(\phi\right)+\frac{8}{3}\sin^{2}\left(\phi\right)\sin\left(\theta\right)\right)\,d\phi\, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{\pi}\left(\frac{16}{3}\sin\left(\phi\right)+\frac{8}{3}\left(\frac{1-\sin\left(2\phi\right)}{2}\right)\sin\left(\theta\right)\right)\,d\phi\, d\theta\\
+    &= \int_{0}^{2\pi}\left(-\frac{32}{3}+\frac{8}{6}\pi\sin\left(\theta\right)\right)\,d\theta\\
+    &= \left[-\frac{32}{3}\theta-\frac{8\pi}{6}\cos\left(\theta\right)\right]_{0}^{2\pi} \\
+    &= \boxed{-\frac{64\pi}{3}}
+\end{align*}
+
+\section*{Section 17.6, 17.8}
+Consider $\vec{F}=x \boldsymbol{\hat\imath}-2 y \boldsymbol{\hat\jmath}+\frac{1}{2} z^{2} \boldsymbol{\hat k}$. Let $S$ be the surface of the solid bounded by $S_{1}: x^{2}+y^{2}=4, \quad S_{2}: z=0, \quad S_{3}: z=1$.
+\begin{enumerate}[label = \alph*.]
+    \item Graph surface $S$.
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+    \begin{axis}[
+        axis lines=middle,
+        xlabel={$x$},
+        ylabel={$y$},
+        zlabel={$z$},
+        xmin=-3, xmax=3,
+	ymin=-3, ymax=3,
+        zmin=-1, zmax=1,
+        colormap/viridis,
+	tick style={thick},
+        view={-60}{-60}, 
+        domain=-3:3,  
+    ]
+    \addplot3[
+        surf,
+        opacity=0.8,
+        samples=40,
+        domain=0:360,
+        y domain=0:1,
+    ]
+    ({2*cos(x)}, {2*sin(x)}, y);
+    \end{axis}
+\end{tikzpicture}
+    \end{figure}
+    \item $\iint_{S_{2}} \vec{F} \cdot d \vec{S}$ to determine the downward flux through $S_{2}$.
+    \begin{align*}
+        \iint_{S_2} \vec{F}\cdot d\vec{S} &= \iint_{D} \left(-P \frac{\partial z}{\partial x}-Q \frac{\partial z}{\partial y}+R\right)\, dA\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \left((-x)(0)-(-2y)(0)+\frac{1}{2}z^{2}\right)\, dA\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \frac{1}{2}z r\,dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \frac{1}{2}\left(0\right) r\,dr\, d\theta\\
+        &= \boxed{0}
+    \end{align*}
+    \item Evaluate $\iint_{S_{3}} \vec{F} \cdot d \vec{S}$ to determine the upward flux through $S_{3}$.
+    \begin{align*}
+        \iint_{S_3} \vec{F}\cdot d\vec{S} &= \iint_{D} \left(-P \frac{\partial z}{\partial x}-Q \frac{\partial z}{\partial y}+R\right)\, dA\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \left((-x)(0)-(-2y)(0)+\frac{1}{2}z^{2}\right)\, dA\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \frac{1}{2}z r\,dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \frac{1}{2}\left(1\right) r\,dr\, d\theta\\
+        &= \frac{1}{2}\int_{0}^{2\pi} 2\, d\theta\\
+        &= \boxed{2\pi}
+    \end{align*}
+    \item Use the Divergence Theorem to calculate the outward flux through the closed surface.
+   \begin{align*}
+        \iint_{S} \vec{F} \cdot d\vec{S} &= \iiint_{E} \mathrm{div}~\vec{F} \, dV\\
+        &= \int_{0}^{2\pi}\int_{0}^{2}\int_{0}^{1} \left(1-2+z\right) r\, dz\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2}\int_{0}^{1}\left(z-1\right)r\, dz \, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2}\left[\frac{z^{2}}{2}-z\right]_{0}^{1} r\, dz \, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{2} \left(\frac{-r}{2}\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\left[\frac{-r^2}{4}\right]_{0}^{2}\, d\theta\\
+        &= -\int_{0}^{2\pi}\, d\theta\\
+        &= \boxed{-2\pi}
+    \end{align*}
+    \item Use $\iiint_{E} \operatorname{div} \vec{F} d V=\iint_{S_{1}} \vec{F} \cdot d \vec{S}+\iint_{S_{2}} \vec{F} \cdot d \vec{S}+\iint_{S_{3}} \vec{F} \cdot d \vec{S}$ to determine the flux through $S_{1}$ away from the $z$-axis.
+    \begin{align*}
+        \iint_{S_{1}} \vec{F} \cdot d \vec{S} &= \iiint_{E} \operatorname{div} \vec{F} d V- \iint_{S_{2}} \vec{F} \cdot d \vec{S}-\iint_{S_{3}} \vec{F} \cdot d \vec{S} \\
+        &= -2\pi-0-2\pi = \boxed{-4\pi}
+    \end{align*}
+    \item Verify your answer in (e) by evaluating $\iint_{S_{1}} \vec{F} \cdot d \vec{S}$ directly.
+    \begin{enumerate}
+        \item Let $r\left(\theta,z\right) = \langle 2\cos\theta,2\sin\theta,z\rangle$
+    \end{enumerate}
+
+    \begin{align*}
+        \vec{r}_{\theta}\times \vec{r}_{z} &= \\
+        &= \begin{vmatrix} 
+        \boldsymbol{\hat\imath} & \boldsymbol{\hat\jmath} & \boldsymbol{\hat k}\\
+        -2\sin\theta & 2\cos\theta & 0 \\
+        0 & 0 & 1
+        \end{vmatrix}\\
+        &= \langle 2\cos\theta,2\sin\theta, 0\rangle
+    \end{align*}
+
+    \begin{align*}
+        \iint_S \vec{\mathbf{F}} \cdot \mathrm{d} \vec{\mathbf{S}}&=\iint_D \vec{\mathbf{F}}(\vec{\mathbf{r}}(\theta, z)) \cdot\left(\vec{\mathbf{r}}_\theta \times \vec{\mathbf{r}}_z\right) \, dA\\
+        &= \int_{0}^{2\pi}\int_{0}^{1} \langle2\cos\theta,-4\sin\theta,\frac{1}{2}z^{2}\rangle \cdot\langle 2\cos\theta,2\sin\theta, 0\rangle \, dr\,d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(4\cos^{2}\theta-8\sin^{2}\theta\right)\,dr\,d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(4\cos^{2}\left(\theta\right)-8\sin^{2}\left(\theta\right)\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(2+2\cos\left(2\theta\right)-4-4\sin^{2}\left(\theta\right)\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(2\left(1+\cos\left(2\theta\right)\right)-4\left(1-\cos\left(2\theta\right)\right)\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(2+2\cos\left(2\theta\right)-4+4\cos\left(2\theta\right)\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\int_{0}^{1}\left(6\cos\left(2\theta\right)-2\right)\, dr\, d\theta\\
+        &= \int_{0}^{2\pi}\left(6\cos\left(2\theta\right)-2\right)\, d\theta\\
+        &= \left[3\sin\left(2\theta\right)-2\theta\right]_{0}^{2\pi}\\
+        &= \boxed{-4\pi}
+    \end{align*}
+\end{enumerate}
+\end{document}
