@@ -1,0 +1,184 @@
+\documentclass[letter,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{mathtools}
+%\usepackage{cfr-lm}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIII A.D. }
+\addtolength{\headwidth}{3cm}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pst-plot}
+\usepgfplotslibrary{polar}
+
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+%\usepackage{draftwatermark}	
+%\SetWatermarkColor[gray]{0.9}
+%\SetWatermarkText{Private}
+%\SetWatermarkScale{3}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet \#12 (17.6)} \\ \midrule
+		\textbf{Name:}   & D. Aiden M. Rosenberg & \textbf{Professor:} & Dr. Alan v. Herrmann Ph.D \\
+		\textbf{Course:} & Calculus III          & \textbf{Date:}      & \today \: A.D.   \\ \bottomrule
+	\end{tabular} }
+\vspace{1cm}
+\section*{Section 17.6.1}
+Find the area of the part of $x^{2}+y^{2}=9$ between $z=0$ and $z=3+y$.
+\begin{enumerate}[label = \roman*.]
+    \item Let $\vec{r}\left(u,v\right) = \langle 3\cos u, 3\sin u, v\rangle$
+    \item $z=3+y \Longrightarrow v=3+3\sin u$
+\end{enumerate}
+$$ r_{u}\times r_{v}=
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k}\\[1em]
+\dfrac{\partial x}{\partial u} & \dfrac{\partial y}{\partial u} & \dfrac{\partial z}{\partial u}\\[1em]
+\dfrac{\partial x}{\partial v} & \dfrac{\partial v}{\partial v} & \dfrac{\partial z}{\partial v}
+\end{vmatrix}
+=
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k}\\
+-3\sin u & 3\cos u & 0\\
+0 & 0 & 1
+\end{vmatrix}
+= \langle 3\cos u, 3\sin u, 0 \rangle
+$$
+$$\left|r_{u}\times r_{v}\right| = \sqrt{\left(3\cos u\right)^2+\left(3\sin u\right)^2} = \sqrt{9\left(\sin^2 u +\sin^2 u\right)}=3$$
+
+\begin{align*}
+    A\left(S\right)=\iint_{D}\left|r_{u}\times r_{v}\right| \, dA &= \\
+    &= \int_{0}^{2\pi} \int_{0}^{3+3\sin u} 3 \, dv \, du\\
+    &= \int_{0}^{2\pi} \left(9+9\sin u\right) \, du\\
+    &= \left[9u-9\cos u\right]_{0}^{2\pi}\\
+    &= \left(18\pi-1\right)-\left(0-1\right)\\
+    &= \boxed{18\pi}
+\end{align*}
+
+\section*{Section 17.6.2}
+Evaluate $\iint_{S} y^{2} d S$ where $S$ is the part of $z=3+y$ inside $x^{2}+y^{2}=9$.
+\begin{enumerate}[label = \roman*.]
+    \item Let $\vec{r}\left(\theta, r\right) = \langle r\cos \theta, r\sin \theta\rangle$ where $0\leq r \leq 3$ and $0 \leq \theta \leq 2\pi$
+    \item $\frac{\partial z}{\partial x} = 0$
+    \item $\frac{\partial z}{\partial y} = 1$
+\end{enumerate}
+\begin{align*}
+    \iint_{D} y^2 \sqrt{\left(\dfrac{\partial z}{\partial x}\right)^2+\left(\dfrac{\partial z}{\partial y}\right)^2 +1} \, dA &=\\
+    &= \sqrt{2}\int_{0}^{2\pi}\int_{0}^{3}\left(r\sin\left(\theta\right)\right)^{2}r\ dr\ d\theta \\
+    &= \sqrt{2}\int_{0}^{2\pi}\int_{0}^{3}r^{3}\sin^{2}\left(\theta\right) \, dr\, d\theta \\
+    &= \frac{81\sqrt{2}}{4}\int_{0}^{2\pi}\sin^{2}\left(\theta\right) \,d\theta\\
+    &= \frac{81\sqrt{2}}{8}\int_{0}^{2\pi}\left(1-\sin\left(2\theta\right)\right)\, d\theta\\
+    &= \frac{81\sqrt{2}}{8} \left[\theta-\frac{\cos\left(2\theta\right)}{2}\right]_{0}^{2\pi}\\
+    &= \frac{81\sqrt{2}}{8} \left(2\pi\right)\\
+    &= \boxed{\frac{81\pi\sqrt{2}}{4}}
+\end{align*}
+
+\section*{Section 17.6.3} 
+Determine the upward flux of $\vec{F}=\langle-y z, x z, z^{2}\rangle$ through the part of $z=\sqrt{x^{2}+y^{2}}$ below $z=2$.
+\begin{enumerate}[label = \roman*.]
+    \item $\vec{r}\left(\theta,r\right)=\langle r\cos \theta ,r\sin \theta,r\rangle$
+    \item $\vec{F}=\langle-y z, x z, z^{2}\rangle = \langle -r^{2}\sin \theta,r^{2}\cos \theta,r^{2}\rangle$
+\end{enumerate}
+$$ r_{u}\times r_{v}=
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k}\\[1em]
+\dfrac{\partial x}{\partial \theta} & \dfrac{\partial y}{\partial \theta} & \dfrac{\partial z}{\partial \theta}\\[1em]
+\dfrac{\partial x}{\partial r} & \dfrac{\partial y}{\partial r} & \dfrac{\partial z}{\partial r}
+\end{vmatrix}
+=
+\begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k}\\
+-r\sin \theta & r\cos \theta & 0\\
+\cos \theta & \sin \theta & 1
+\end{vmatrix}
+= \langle r\cos \theta, r\sin \theta, -r \rangle
+$$
+\begin{align*}
+\iint_{D} \vec{F}\left(\vec{r}\left(\theta,r\right)\right) \cdot \left(\vec{r}_{\theta}\times \vec{r}_{r}\right) \, dA &=\\
+    &= \int_{0}^{2\pi}\int_{0}^{2} \langle -r^{2}\sin \theta,r^{2}\cos u,r^{2}\rangle \cdot \langle -r\cos u, -r\sin u, r \rangle \, dr \, d\theta\\
+    &=  \int_{0}^{2\pi}\int_{0}^{2} \left(r^3\cos \theta \sin \theta-r^3\sin \theta \cos \theta +r^3\right) \, dr \, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{2}r^{3}\left(1\right) \, dr \, d\theta\\
+    &= 4\int_{0}^{2\pi}\left(1\right)\, d\theta\\
+    &= \boxed{8\pi}
+\end{align*}
+\end{document}
