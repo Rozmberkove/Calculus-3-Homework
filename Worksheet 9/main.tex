@@ -1,0 +1,287 @@
+\documentclass[letter,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{pgfornament}
+\usepackage{multicol}
+\usepackage{systeme}
+\usepackage{graphicx}
+\usepackage{mathtools}
+%\usepackage{cfr-lm}
+\usepackage{booktabs}
+\usepackage{svg}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{trees}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+\fancyhead{}\fancyfoot{}
+\fancyhead[R]{\textbf{\thepage}}
+\fancyhead[L]{Aiden M. Rosenberg, MMXXIII A.D. }
+\addtolength{\headwidth}{3cm}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pst-plot}
+\usepgfplotslibrary{polar}
+
+
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.5cm, top=2.5cm, right=1.5cm, bottom=2cm}
+
+%\usepackage{draftwatermark}	
+%\SetWatermarkColor[gray]{0.9}
+%\SetWatermarkText{Private}
+%\SetWatermarkScale{3}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\titleformat{\subsection}[block]
+  { \vspace{4pt}\bfseries\centering}
+  {}{0em}{}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+\parbox{2.35cm}{%
+	\includesvg[width=2.3cm]{logo.svg}
+}
+\parbox{0.3cm}{\hspace{0.3cm}}
+\parbox{\dimexpr\linewidth-5cm\relax}{
+	\setlength{\tabcolsep}{0.5em}
+	\def\arraystretch{1.25}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		\multicolumn{4}{c}
+		{\hspace{-0.5em}\textbf{Assignment}: Worksheet \#9 (6.6-16.7)} \\ \midrule
+		\textbf{Name:}   & D. Aiden M. Rosenberg & \textbf{Professor:} & Dr. Alan v. Herrmann Ph.D \\
+		\textbf{Course:} & Calculus III          & \textbf{Date:}      & October 21st, 2023 A.D.   \\ \bottomrule
+	\end{tabular} }
+\vspace{1cm}
+
+\section*{Section 16.6}
+Find the center of mass of the solid given by $W$ bounded above by $z = r^2$, below by $z = 0$ and laterally by $r = 1$. with density function $\delta(r, \theta, z) = r$.
+\begin{align*}
+    M&= \int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}}\delta(r, \theta, z) r \, dz\, dr\, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} r^2 \, dz\, dr\, d\theta\\
+    &= \int_{0}^{2\pi}\int_{0}^{1} \left[r^2z\right]_{0}^{r^2}dr\, d\theta \\
+    &= \int_{0}^{2\pi}\int_{0}^{1} r^4 dr\, d\theta \\
+    &= \int_{0}^{2\pi}\left[\frac{r^4}{5}\right]_{0}^{1} dr\, d\theta \\
+    &= \frac{1}{4}\int_{0}^{2\pi}d\theta \\
+    &= \left[\frac{1}{4}\theta\right]_{0}^{2\pi} \\
+    &= \frac{2\pi}{5}
+\end{align*}
+$x=r\cos\theta$, $y=r\sin\theta$ and $z=z$.
+\begin{align*}
+\bar{x} &= \frac{1}{M}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} x\delta(r, \theta, z) r \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} r^3\cos\theta \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} \left[r^3\cos\theta z\right]_{0}^{r^{2}} \, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} r^5\cos\theta \, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi} \left[\frac{r^6}{6}\cos\theta \right]_{0}^{1}\, d\theta \\
+        &= \frac{5}{12\pi}\int_{0}^{2\pi} \left[\cos\theta \right]\, d\theta \\
+        &= \left[\frac{5}{2\pi} \sin\theta \right]_{0}^{2\pi} \\
+        &= 0 \\
+\end{align*}
+\begin{align*}
+\bar{y} &= \frac{1}{M}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} z\delta(r, \theta, z) r \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} r^3\sin\theta \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} \left[r^3\sin\theta z\right]_{0}^{r^{2}} \, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} r^5\sin\theta \, dr\, d\theta \\
+        &= \frac{5}{12\pi}\int_{0}^{2\pi} \left[\frac{r^6}{6}\sin\theta \right]_{0}^{1}\, d\theta \\
+        &= \frac{5}{12\pi}\int_{0}^{2\pi} \left[\sin\theta \right]\, d\theta \\
+        &= \left[-\frac{5}{12\pi}\cos\theta \right]_{0}^{2\pi} \\
+        &= 0 
+\end{align*}
+\begin{align*}
+\bar{z} &= \frac{1}{M}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} z\delta(r, \theta, z) r \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1}\int_{0}^{r^{2}} zr^2 \, dz\, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} \left[\frac{z^2}{2}r^{2}\right]_{0}^{r^{2}} \, dr\, d\theta \\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\int_{0}^{1} \frac{r^6}{2} \, dr\, d\theta\\
+        &= \frac{5}{2\pi}\int_{0}^{2\pi}\left[ \frac{r^7}{14} \right]_{0}^{1}\, \, d\theta\\
+         &= \frac{5}{28\pi}\int_{0}^{2\pi} \, d\theta\\
+         &= \left[\frac{5}{28\pi}\theta\right]_{0}^{2\pi} \, d\theta\\
+         &=\frac{10\pi}{28\pi}\\
+         &= \frac{5}{14}
+\end{align*}
+
+$$\left(\bar{x}, \bar{y}, \bar{z}\right)= \boxed{\left(0, 0, \frac{5}{14}\right)}$$
+\section*{Section 16.6, 16.7}
+Consider lamina (thin plate) $R$ is the region in the $xy-$plane bounded by $y = \frac{1}{4}x$, $y = \frac{5}{2}x$, and the hyperbolas $xy = 1$ and $xy = 5$. Use the transformation $u = \frac{y}{x}$ and $v = xy$ to transform $R$ in the $xy-$plane into region $S$ in the $uv-$plane.
+
+\begin{enumerate}[label = \roman*.]
+    \item Sketch the original region of integration $R$ in the $xy-$plane and the new region $S$ in the $uv-$plane using the given change of variables.
+    \begin{figure}[h]
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            ymin = -2,
+            ymax = 5,
+            xmin = -2,
+            xmax = 5,
+        ]
+
+        % Plot y = 1/4 * x
+        \addplot[black,dashed, domain=2:4.472, samples=400, name path=A] {1/4*x};
+
+        % Plot y = 5/2 * x
+        \addplot[black,dashed, domain=0.632:1.414, samples=400, name path=B] {5/2*x};
+
+        % Plot xy = 1
+        \addplot[black,dashed, domain=0.632:2, samples=400,name path=C] {1/x};
+
+        % Plot xy = 5
+        \addplot[black,dashed, domain=1.414:4.472, samples=400,  name path=D] {5/x};
+
+        \node at (2, 1.5) {$R$}; % Label R
+
+        % Shade the area between the curves
+        \addplot[blue!20 , opacity=0.5] fill between[of=A and C];
+        \addplot[blue!20 , opacity=0.5] fill between[of=A and D];
+        \addplot[blue!20 , opacity=0.5] fill between[of=B and C];
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graph of the region $R$}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+        % Axes
+        \draw[->] (-0.5,0) -- (3,0) node[below] {$u$};
+        \draw[->] (0,-0.5) -- (0,6) node[left] {$v$};
+
+        % Shading the region R
+        \fill[blue!20] (0.25,1) rectangle (2.5,5);
+
+        % Lines $u = 1/4$ and $u = 5/2$
+        \draw[dashed] (0.25,0) -- (0.25,6) node[above] {$u = \frac{1}{4}$};
+        \draw[dashed] (2.5,0) -- (2.5,6) node[above] {$u = \frac{5}{2}$};
+        \node at (1.375, 3) {$S$}; % Label S
+
+        % Lines $v = 1$ and $v = 5$
+        \draw[dashed] (0,1) -- (3,1) node[right] {$v = 1$};
+        \draw[dashed] (0,5) -- (3,5) node[right] {$v = 5$};
+    \end{tikzpicture}
+    \caption{Graph of the region $S$}
+\end{minipage}
+\end{figure}
+
+    \item Find the limits of integration for the new integral with respect to $u$ and $v$.
+    \begin{empheq}[box=\fbox]{align*}
+    \frac{1}{4} &\leq u \leq \frac{5}{2} \\
+    1 &\leq v \leq 5
+\end{empheq}
+    \item Compute the Jacobian.
+    $$J(u, v) = \begin{vmatrix}
+  \dfrac{\partial u}{\partial x} & \dfrac{\partial v}{\partial x}\\[1em]
+  \dfrac{\partial u}{\partial y} & \dfrac{\partial v}{\partial y} \end{vmatrix}
+= \begin{vmatrix}
+  \dfrac{-y}{u^2} & \dfrac{1}{y}    \\[1em]
+  x     & \dfrac{1}{x} \end{vmatrix}= \left(\dfrac{-y}{u^2}\cdot \dfrac{1}{x}\right) - \left(\dfrac{x}{y}\right) =  \frac{-1}{2u}$$
+    \item Change the variables to find the mass of lamina $R$ assuming that $R$ has constant density.
+    \begin{align*}
+        \int_{1}^{5}\int_{1/4}^{5/2} \delta\left| \frac{-1}{2u}\right| \, du \, dv &=\\
+        &= \frac{1}{2}  \int_{1}^{5} \left[\ln(u)\right]_{1/4}^{5/2} \, dv\\
+        &= \frac{1}{2}  \int_{1}^{5} \left[\ln\left(\frac{5}{2}\right)-\ln\left(\frac{1}{4}\right)\right] \, dv\\
+        &= \frac{1}{2} \ln (10)  \cdot\int_{1}^{5}  \delta\, dv\\
+        &= \frac{1}{2}\ln\left(10\right)  \cdot 4\cdot \delta\\
+        &= 2\ln\left(10\right) \delta\\
+    \end{align*}
+\end{enumerate}
+
+\section{Section 16.7}
+Use the transformation $u = x + 2y$, $v = y-x$ to evaluate $\displaystyle \int_{0}^{\frac{2}{3}} \int_{y}^{2-2y}\left(x+2y\right)e^{y-x} \, dx \, dy$.
+
+
+$$J(u,v) = \left|\begin{matrix} \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\[1em]\dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y} \end{matrix} \right| = \left| \begin{matrix}
+\dfrac{1}{3} & \dfrac{1}{3}\\[1em]
+-\dfrac{2}{3} & \dfrac{1}{3}
+\end{matrix}\right| = \left(\frac{1}{3}\right)\left(\frac{1}{3}\right)-\left(-\frac{2}{3}\right)\left(\frac{1}{3}\right)=\frac{1}{3}$$
+
+\begin{enumerate}
+    \item $x = \frac{1}{3}(u - 2v)$
+    \item $y = \frac{1}{3}(u + v)$
+\end{enumerate}
+
+Original limits of integration: 
+$$0\leq y \leq \frac{2}{3}\,,\qquad y\leq x \leq 2-2y\,.$$
+
+Bound of $y$:
+\begin{align*}
+0\leq y \leq \frac{2}{3}&\Longrightarrow 0\leq u+v \leq 2\,\\
+\end{align*}
+
+Bound of $x$:
+\begin{align*}
+y\leq x \leq 2-2y &\Longrightarrow u+v\leq u-2v\leq 6-2(u+v) &\Longrightarrow \begin{cases*}v\leq 0\\u\leq2\end{cases*} \\
+\end{align*}
+
+New limits of integration:
+$$0\leq u\leq 2\,,\qquad-u\leq v\leq0\,.$$
+
+Integration by parts:
+\begin{enumerate}
+    \item Let $w = u \Longrightarrow dw = du$
+    \item Let $dt = e^{-u} \Longrightarrow t = -e^{-u}$
+\end{enumerate}
+
+\begin{align*}
+    \int_0^2 \int_{-u}^{0} \left(u\cdot e^v\right) \cdot |J| \, dv \, du &= \\
+    &= \frac{1}{3} \int_0^2 \int_{-u}^{0} \left(u\cdot e^v\right) \, dv \, du\\
+    &= \frac{1}{3}\left[\frac{u^2}{2}-\left(-ue^{-u} -\int -e^{-u} \, du \right)\right]_{0}^{2}\\
+    &= \frac{1}{3}\left[\frac{u^2}{2}+ue^{-u} + e^{-u}\right]_{0}^{2}\\
+    &= \frac{1}{3}\left[\frac{u^2}{2}+\frac{1+u}{e^{u}}\right]_{0}^{2}\\
+    &= \frac{1}{3}\left(\left(2+\frac{3}{e^{2}}\right)-\left(1\right)\right)\\
+    &= \frac{2}{3}+\frac{1}{e^{2}}-\frac{1}{3}\\
+    &= \boxed{\frac{1}{3}+\frac{1}{e^{2}}}
+\end{align*}
+
+
+\end{document}
