@@ -35,6 +35,6 @@ This repository is licensed under the [MIT License](LICENSE). You are free to us
 
 ## Contact
 
-If you have any questions, suggestions, or concerns regarding this repository, please feel free to contact the repository maintainer at [email@example.com](mailto:email@example.com).
+If you have any questions, suggestions, or concerns regarding this repository, please feel free to contact the repository maintainer.
 
 Happy learning and exploring Calculus III!
